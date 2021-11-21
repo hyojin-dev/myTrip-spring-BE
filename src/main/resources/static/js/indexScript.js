@@ -125,6 +125,16 @@ function slide3() {
     })
 }
 
+function showReviews() {
+        $.ajax({
+            type: "GET",
+            url: `/userReviews`,
+            success: function (response) {
+                console.log(response)
+            }
+        })
+}
+
 // 현재 위치 불러와 근처 여행지 조회
 function geoInfo() {
     function onGeoOK(position) { //위치 정보 공유 승인 시
@@ -408,10 +418,11 @@ function checkAddress(code) {
 }
 
 function writeTrip() {
-    alert('로그인이 필요한 서비스입니다.');
-    if (localStorage.getItem('token')) {
-        window.location.href = "../templates/write.html";
-    } else {
-        window.location.href = "../templates/login.html";
-    }
+    // 로그인 코드 생성 예정(HJ)
+    // if (localStorage.getItem('token')) {
+        window.location.href = "/write";
+    // } else {
+    //     alert('로그인이 필요한 서비스입니다.');
+    //     window.location.href = "../templates/login.html";
+    // }
 }

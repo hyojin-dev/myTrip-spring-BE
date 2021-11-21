@@ -1,27 +1,27 @@
 // 리뷰 작성
 function save() {
-    let title = $('#title').val();
-    let place = $('#place').val();
-    let review = $('#review').val();
-    let file = $('#file')[0].files[0];
+    let userReview = {
+        "title": $('#title').val(),
+        "place": $('#place').val(),
+        "review": $('#review').val(),
+        // "photoFile": $('#file')[0].files[0]
+    }
+    // console.log(typeof $('#file')[0].files[0])
 
-    let form_data = new FormData();
 
-    form_data.append("file_give", file);
-    form_data.append("title_give", title);
-    form_data.append("place_give", place);
-    form_data.append("review_give", review);
+
+
 
     $.ajax({
         type: "POST",
-        url: "/trips/place",
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
+        url: "/userReview",
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(userReview),
         success: function (response) {
-            alert(response["msg"])
-            window.location.href = '../templates/tripsList.html';
+            console.log(response);
+            // console.log(response["photoFile"]);
+            alert("포스팅 업데이트 성공!");
+            // window.location.reload();
         }
     });
 }
